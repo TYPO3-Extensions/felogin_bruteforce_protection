@@ -1,14 +1,15 @@
 <?php
 
 if (!defined('TYPO3_MODE')) {
-    die ('Access denied.');
+    die('Access denied.');
 }
 
 if (TYPO3_MODE == 'BE') {
     if (isset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers']) == false) {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'] = array();
     }
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'Aoe\\FeloginBruteforceProtection\\Command\\CleanUpCommandController';
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] =
+        'Aoe\\FeloginBruteforceProtection\\Command\\CleanUpCommandController';
 }
 
 if (TYPO3_MODE == 'FE') {
@@ -17,7 +18,8 @@ if (TYPO3_MODE == 'FE') {
         'EXT:' . $_EXTKEY . '/Classes/Hooks/UserAuth/PostUserLookUp.php:Tx_FeloginBruteforceProtection_Hooks_UserAuth_PostUserLookUp->handlePostUserLookUp';
     // postProcContent hook for fe_login
     #$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['felogin']['postProcContent'][] =
-    #    'EXT:' . $_EXTKEY . '/Classes/Hooks/FeLogin/PostProcContent.php:Aoe\\FeloginBruteforceProtection\\Hook\\FeLogin\\PostProcContent->handlePostProcContent';
+    #    'EXT:' . $_EXTKEY .
+    # '/Classes/Hooks/FeLogin/PostProcContent.php:Aoe\\FeloginBruteforceProtection\\Hook\\FeLogin\\PostProcContent->handlePostProcContent';
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addService(
         $_EXTKEY,
@@ -32,7 +34,6 @@ if (TYPO3_MODE == 'FE') {
             'quality' => 100,
             'os' => '',
             'exec' => '',
-            'className' => '\Aoe\FeloginBruteforceProtection\Service\AuthUser'
-        )
-    );
+            'className' => '\Aoe\FeloginBruteforceProtection\Service\AuthUser')
+        );
 }

@@ -243,10 +243,8 @@ class Restriction
      */
     private function isOutdated(Entry $entry)
     {
-        return (
-            ($this->hasMaximumNumberOfFailuresReached($entry) && $this->isRestrictionTimeReached($entry)) ||
-            (false === $this->hasMaximumNumberOfFailuresReached($entry) && $this->isResetTimeOver($entry))
-        );
+        return (($this->hasMaximumNumberOfFailuresReached($entry) && $this->isRestrictionTimeReached($entry))
+            || (false === $this->hasMaximumNumberOfFailuresReached($entry) && $this->isResetTimeOver($entry)));
     }
 
     /**
@@ -284,10 +282,9 @@ class Restriction
     private function getClientIdentifier()
     {
         if (false === isset($this->clientIdentifier)) {
-            $this->clientIdentifier = md5(
-                $_SERVER['REMOTE_ADDR'] . $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']
-            );
+            $this->clientIdentifier = md5($_SERVER['REMOTE_ADDR'] . $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']);
         }
         return $this->clientIdentifier;
     }
+
 }

@@ -84,12 +84,12 @@ class Tx_FeloginBruteforceProtection_Hooks_UserAuth_PostUserLookUp
      */
     private function updateGlobals(&$userAuthObject)
     {
-        $GLOBALS ['felogin_bruteforce_protection'] ['restricted'] = false;
+        $GLOBALS['felogin_bruteforce_protection']['restricted'] = false;
         if ($this->getRestrictionService()->isClientRestricted()) {
             $userAuthObject->loginFailure = 1;
-            $GLOBALS ['felogin_bruteforce_protection'] ['restricted'] = true;
-            $GLOBALS ['felogin_bruteforce_protection'] ['restriction_time'] = $this->getConfiguration()->getRestrictionTime();
-            $GLOBALS ['felogin_bruteforce_protection'] ['restriction_message'] = $this->getRestrictionMessage();
+            $GLOBALS['felogin_bruteforce_protection']['restricted'] = true;
+            $GLOBALS['felogin_bruteforce_protection']['restriction_time'] = $this->getConfiguration()->getRestrictionTime();
+            $GLOBALS['felogin_bruteforce_protection']['restriction_message'] = $this->getRestrictionMessage();
             return false;
         }
         return true;
@@ -114,11 +114,9 @@ class Tx_FeloginBruteforceProtection_Hooks_UserAuth_PostUserLookUp
      */
     private function hasFeUserLoggedIn(Core\Authentication\AbstractUserAuthentication $userAuthObject)
     {
-        if ($userAuthObject->loginType === 'FE' &&
-            $userAuthObject->loginFailure === false &&
-            is_array($userAuthObject->user) &&
-            $userAuthObject->loginSessionStarted === true
-        ) {
+        if ($userAuthObject->loginType === 'FE' && $userAuthObject->loginFailure === false
+            && is_array($userAuthObject->user) && $userAuthObject->loginSessionStarted === true) {
+
             return true;
         }
         return false;
@@ -141,7 +139,7 @@ class Tx_FeloginBruteforceProtection_Hooks_UserAuth_PostUserLookUp
      */
     private function getRestrictionService()
     {
-        if (false === isset ($this->restrictionService)) {
+        if (false === isset($this->restrictionService)) {
             $this->restrictionService = $this->getObjectManager()->get('Aoe\FeloginBruteforceProtection\Domain\Service\RestrictionService');
         }
         return $this->restrictionService;
@@ -152,7 +150,7 @@ class Tx_FeloginBruteforceProtection_Hooks_UserAuth_PostUserLookUp
      */
     protected function getConfiguration()
     {
-        if (false === isset ($this->configuration)) {
+        if (false === isset($this->configuration)) {
             $this->configuration = $this->getObjectManager()->get('Aoe\FeloginBruteforceProtection\System\Configuration');
         }
         return $this->configuration;
@@ -163,9 +161,10 @@ class Tx_FeloginBruteforceProtection_Hooks_UserAuth_PostUserLookUp
      */
     private function getObjectManager()
     {
-        if (false === isset ($this->objectManager)) {
+        if (false === isset($this->objectManager)) {
             $this->objectManager = Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
         }
         return $this->objectManager;
     }
+
 }
