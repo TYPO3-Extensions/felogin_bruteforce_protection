@@ -168,4 +168,3 @@ class Tx_FeloginBruteforceProtection_Hooks_UserAuth_PostUserLookUp
     }
 
 }
-

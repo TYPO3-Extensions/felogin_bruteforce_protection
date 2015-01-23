@@ -13,9 +13,8 @@ return array(
         'crdate' => 'crdate',
         'dividers2tabs' => true,
         'searchFields' => 'identifier, failures,',
-        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath(
-            'felogin_bruteforce_protection'
-            ) . 'Resources/Public/Icons/TCA/tx_feloginbruteforceprotection_domain_model_entry.gif'
+        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('felogin_bruteforce_protection') .
+            'Resources/Public/Icons/TCA/tx_feloginbruteforceprotection_domain_model_entry.gif'
     ),
     'interface' => array(
         'showRecordFieldList' => 'identifier,failures',
